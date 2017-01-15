@@ -7,22 +7,39 @@
 </header>
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Incarcati fisierul:</h1>
-      aaa {{files}}
-      <input type="file" id="file" name="file"/>
-      <button ng-click ="list()">List</button>
-      <button ng-click ="create()">Create</button>
+  <div class="row" style="margin-top: 1%">
+    <div class="col-md-12">
+      <div class="col-md-4"><input class="btn btn-default" id="uploadedFile" type="file" fileread="file.content"
+                                   ng-model="file"
+                                   onchange="angular.element(this).scope().upload()">
+
+      </div>
+      <div class="col-md-2">
+          <button ng-if = "latenta" class="btn btn-info" disabled> Latenta: {{latenta}} ms </button>
+      </div>
     </div>
+      <div class="col-md-12"  style="margin-top: 1%; margin-left: 15px">
+        <button class="btn btn-primary" ng-click="list()">Display last file upload</button>
+        <button ng-if = "files" class="btn btn-info" disabled> File name: {{files}}; File size: {{size}} bytes  </button>
+
+      </div>
+    <div class="col-md-12"  style="margin-top: 1%; margin-left: 15px">
+      <button class="btn btn-primary" ng-click="listTen()">Display last 10 files </button>
+      <button ng-if = "files" ng-repeat="n in names" disabled> {{names}}{{n}};   </button>
+
+    </div>
+    </div>
+
+    </div>
+
+  </div>
   </div>
 
 </div>
 
 <footer class="footer">
   <div class="container">
-      <p>Angular Fullstack v2.1.1 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+      <p>by Madalina Lacatus
+      </p>
   </div>
 </footer>

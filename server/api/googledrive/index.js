@@ -6,7 +6,8 @@ var controller = require('./googledrive.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/listFile', controller.listFile);
 router.get('/listFiles', controller.listFiles);
-router.get('/createFiles', controller.createFiles);
+router.get('/createFiles/:file/:name/:typeparam1/:typeparam2', controller.createFiles);
 
 module.exports = router;
