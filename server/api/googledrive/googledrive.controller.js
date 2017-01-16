@@ -24,7 +24,7 @@ exports.index = function(req, res) {
 
 exports.listFile = function(req, res) {
 
-
+ var pagesize = req.params.pagesize;
 // Load client secrets from a local file.
   fs.readFile('client_secret.json', function processClientSecrets(err, content) {
     if (err) {
@@ -119,7 +119,7 @@ exports.listFile = function(req, res) {
     var service = google.drive('v3');
     service.files.list({
       auth: auth,
-      pageSize: 1,
+      pageSize: pagesize,
       fields: "nextPageToken, files(id, name)"
     }, function(err, response) {
       if (err) {

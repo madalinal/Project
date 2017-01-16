@@ -9,37 +9,48 @@
 <div class="container">
   <div class="row" style="margin-top: 1%">
     <div class="col-md-12">
-      <div class="col-md-4"><input class="btn btn-default" id="uploadedFile" type="file" fileread="file.content"
+      <div class="col-md-2">
+        <label for="uploadedFile" class="custom-file-upload">
+          <i class="glyphicon glyphicon-upload"></i> Upload file/files
+        </label>
+
+        <input class="btn btn-default" id="uploadedFile" type="file" fileread="file.content"
                                    ng-model="file"
+                                   multiple
                                    onchange="angular.element(this).scope().upload()">
 
-      </div>
-      <div class="col-md-2">
-          <button ng-if = "latenta" class="btn btn-info" disabled> Latenta: {{latenta}} ms </button>
-      </div>
-    </div>
-      <div class="col-md-12"  style="margin-top: 1%; margin-left: 15px">
-        <button class="btn btn-primary" ng-click="list()">Display last file upload</button>
-        <button ng-if = "files" class="btn btn-info" disabled> File name: {{files}}; File size: {{size}} bytes  </button>
+      </div >
+        <div class="col-md-4" ng-if="showModal"  style="margin-top: 5px">
+          <h2 class="label label-success" style="font-size: medium">   <i class="glyphicon glyphicon-ok"></i> File/Files uploaded succes!</h2>
+        </div>
 
-      </div>
-    <div class="col-md-12"  style="margin-top: 1%; margin-left: 15px">
-      <button class="btn btn-primary" ng-click="listTen()">Display last 10 files </button>
-      <button ng-if = "files" ng-repeat="n in names" disabled> {{names}}{{n}};   </button>
 
     </div>
-    </div>
-
+    <div  ng-if="filesUploaded.length!=0" class="col-md-12" style="margin-top: 1%">
+      <div class="col-md-2" > <button class="btn btn-primary" ng-click="list()">
+        <i class="glyphicon glyphicon-th-list"></i> Display files uploaded</button></div>
+      <div ng-if="files.length!=0"  class="col-md-8">
+        <div class="label label-primary col-md-12" style="font-size: medium; margin-top: 1%" ng-repeat="f in files">
+          <i class="glyphicon glyphicon-ok"></i>
+          <span style="color: black"> {{$index}}. </span>
+          <span style="color: black"> File name: </span>{{f.name}};
+          <span style="color: black"> File size: </span>
+           {{size[$index]}} bytes;
+          <span style="color: black"> Latency:</span>
+           {{latenta[$index]}} ms;</div>
+       </div>
     </div>
 
   </div>
-  </div>
+
+
 
 </div>
 
+
 <footer class="footer">
   <div class="container">
-      <p>by Madalina Lacatus
-      </p>
+    <p>by Madalina Lacatus
+    </p>
   </div>
 </footer>
